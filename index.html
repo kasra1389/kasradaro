@@ -1,155 +1,0 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>چت‌بات کسری دارو</title>
-    <a href="https://kasra1389.github.io/kasradaro/">https://bankmelli.ir</a>
-
-    <link rel="icon"typy="image/x-icon" href="k.png">
-    
-    <!-- فونت فارسی شبنم -->
-    <link href="https://cdn.fontcdn.ir/FontShabnam/FDShabnam.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- فونت‌های انگلیسی -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- استایل داخلی برای فونت -->
-    <style>
-        body { font-family: 'Shabnam', sans-serif; }
-    </style>
-</head>
-<body class="neon-theme">
-    <!-- کانوا برای افکت ذرات -->
-    <canvas id="particles"></canvas>
-    
-    <!-- ساختار اصلی چت -->
-    <div class="container">
-        <!-- دکمه همبرگر (مخصوص موبایل) -->
-        <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        
-        <!-- سایدبار (تاریخچه چت و تنظیمات) -->
-        <div class="sidebar" id="sidebar">
-            <!-- لوگو و عنوان -->
-            <div class="logo">
-                <img src="k.png" alt="کسری دارو" class="logo-img">
-                <h2>کسری دارو</h2>
-            </div>
-            
-            <!-- دکمه چت جدید -->
-            <button class="new-chat" onclick="newChat()">💬 چت جدید</button>
-            
-            <!-- تاریخچه چت‌ها -->
-            <div class="chat-history" id="chatHistory"></div>
-            
-            <!-- تبلیغات -->
-            <div class="ad-section">
-                <h4>تبلیغات</h4>
-                <div class="ad-content">
-                    <p>محصولات جدید کسری دارو!</p>
-                    <button onclick="visitSite()">بیشتر بدانید</button>
-                </div>
-            </div>
-            
-            <!-- پروفایل کاربر -->
-            <div class="profile" onclick="toggleProfile()">
-                <p>👤 پروفایل من</p>
-                <div class="profile-info" id="profileInfo" style="display: none;">
-                    <p>نام: کاربر کسری</p>
-                    <p>ایمیل: user@kasridaru.com</p>
-                </div>
-            </div>
-            
-            <!-- اطلاعات تماس -->
-            <div class="profile" onclick="toggleContact()">
-                <p>📞 تماس با ما</p>
-                <div class="contact-info" id="contactInfo" style="display: none;">
-                    <p>کسری شیرعلیزاده</p>
-                    <p><a href="tel:09145325706">0914-532-5706</a></p>
-                    <p><a href="mailto:kasri@example.com">kasri@example.com</a></p>
-                </div>
-            </div>
-        </div>
-        <!-- کسری
-        کسری
-        کسری -->
-        <!-- بخش اصلی چت -->
-        <div class="chat-main">
-            <!-- هدر چت -->
-            <div class="chat-header">
-                <div class="datetime">
-                    <span id="dateTime"></span>
-                </div>
-                <h3>سلام، من چت‌بات کسری دارو هستم.</h3>
-                <p>چطور می‌تونم بهت کمک کنم؟</p>
-                
-                <!-- دکمه‌های کنترلی -->
-                <button class="settings-btn" onclick="toggleSettings()">⚙️ تنظیمات</button>
-                <button class="hide-sidebar-btn" onclick="toggleSidebar()">⬅️ سایدبار</button>
-                <button class="visit-site-btn" onclick="visitSite()">🌐 بازدید از سایت</button>
-                
-                <!-- جعبه جستجو -->
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="جستجو در تاریخچه...">
-                    <button onclick="handleSearch()">🔍</button>
-                </div>
-            </div>
-            
-            <!-- پیام‌های چت -->
-            <div class="chat-messages" id="chatMessages"></div>
-            
-            <!-- ورودی کاربر -->
-            <div class="chat-input-box">
-                <div class="chat-input">
-                    <input type="text" id="userInput" placeholder="پیام خود را بنویسید...">
-                    <div class="chat-buttons">
-                        <button class="think-btn" onclick="deepThink()">🤔</button>
-                        <button class="search-btn" onclick="search()">🔍</button>
-                        <button class="send-btn" onclick="sendMessage()">➤</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- پنل تنظیمات -->
-        <div class="settings-panel" id="settingsPanel">
-            <h4>تنظیمات</h4>
-            <div class="setting-item">
-                <label>تم:</label>
-                <select id="themeSelect" onchange="changeTheme()">
-                    <option value="neon">نئونی</option>
-                    <option value="gold">طلایی</option>
-                    <option value="silver">نقره‌ای</option>
-                    <option value="rosegold">رزگلد</option>
-                </select>
-            </div>
-            <div class="setting-item">
-                <label>فونت:</label>
-                <select id="fontSelect" onchange="changeFont()">
-                    <option value="Shabnam">شبنم</option>
-                    <option value="Raleway">Raleway</option>
-                </select>
-            </div>
-            <div class="setting-item">
-                <label>زبان:</label>
-                <select id="languageSelect" onchange="changeLanguage()">
-                    <option value="fa">فارسی</option>
-                    <option value="en">English</option>
-                </select>
-            </div>
-            <div class="setting-item">
-                <label>اندازه فونت:</label>
-                <input type="range" min="12" max="24" value="16" id="fontSizeSlider" oninput="changeFontSize()">
-            </div>
-        </div>
-    </div>
-    
-    <!-- صداهای سیستم -->
-    <audio id="sendSound" src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
-    <audio id="receiveSound" src="https://www.soundjay.com/buttons/beep-02.mp3"></audio>
-    
-    <!-- اسکریپت اصلی -->
-    <script src="script.js"></script>
-</body>
-</html>
